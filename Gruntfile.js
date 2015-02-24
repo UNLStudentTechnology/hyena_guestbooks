@@ -251,6 +251,9 @@ module.exports = function (grunt) {
         blockReplacements: {
           css: function (block) {
             return '<link rel="stylesheet" href="' + block.dest + '" shim-shadowdom>';
+          },
+          elements: function (block) {
+            return '<link rel="import" href="' + block.dest + '">';
           }
         }
       }
@@ -360,9 +363,9 @@ module.exports = function (grunt) {
           ]
         }, {
           expand: true, 
-          cwd: './',
-          dest: '',
-          src: ['elements/**', '!**/node_modules/**', '!**/bower_components/**']
+          cwd: './bower_components/unl-components',
+          dest: '<%= yeoman.dist %>/elements/unl-components/',
+          src: ['**', '!**/node_modules/**'], 
         }, {
           expand: true,
           cwd: '.tmp/images',
