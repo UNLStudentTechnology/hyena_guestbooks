@@ -5,9 +5,20 @@
 	<a ng-click="go('/{{groupId}}/guestbook/{{guestbookId}}/settings')" title="Settings"><unl-icon-button icon="settings"></unl-icon-button></a>
 </unl-toolbar>
 <div class="content-container">
+	<!-- Sign in Form -->
+	<form name="signinUserForm" ng-submit="signInUser()" novalidate class="margin-bottom">
+		<div horizontal layout>
+			<label for="nuid" hidden>Enter an NUID</label>
+			<input self-validation model="signinNcard" type="text" field="nuid" placeholder="Enter an NUID" flex start>
+			<button type="submit" ng-disabled="signinUserForm.$invalid">Sign In</button>
+		</div>
+	</form>
+	<!-- End Sign in Form -->
 	<unl-list-group>
-		<unl-list-item-header>Past Sign-ins</unl-list-item-header>
-		<unl-empty-content text="No Past Sign-ins" ng-hide="signins.length > 0"></unl-empty-content>
+		<unl-list-item-header ng-show="signins.length > 0">{{signins.length}} Past {{signins.length > 1 ? 'Sign-ins' : 'Sign-in'}}</unl-list-item-header>
+		<unl-empty-content text="No Past Sign-ins" ng-hide="signins.length > 0">
+			<span subhead>Sign in users by hitting <core-icon icon="fullscreen"></core-icon> above</span>
+		</unl-empty-content>
 		<unl-list-item-label class="animate-fade-left" user user-model="signin.user" heading="{{ signin.user.first_name ? signin.user.first_name +' '+ signin.user.last_name : signin.user }}" image="{{signin.user.profile_image}}" label="{{signin.start_at | amCalendar}}" ng-repeat="signin in signins | orderBy:'start_at':true">
 		</unl-list-item-label>
 	</unl-list-group>

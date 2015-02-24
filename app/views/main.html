@@ -1,7 +1,7 @@
 <unl-toolbar>
 	<unl-drawer-toggle ng-click="toggleMainDrawer()"></unl-drawer-toggle>
-  	<span flex class="align-center">Guestbooks</span>
-  	<a ng-click="go('/{{groupId}}/guestbook/new')" ng-show="groupId" title="Create New Guestbook"><unl-icon-button icon="add"></unl-icon-button></a>
+	<span flex class="align-center">Guestbooks</span>
+	<a ng-click="go('/{{groupId}}/guestbook/new')" ng-show="groupId" title="Create New Guestbook"><unl-icon-button icon="add"></unl-icon-button></a>
 </unl-toolbar>
 <!-- Group List -->
 <div class="content-container" ng-hide="groupId">
@@ -13,7 +13,9 @@
 </div>
 <!-- End Group List -->
 <div class="content-container" ng-show="groupId">
-  <unl-empty-content ng-hide="guestbooks.length > 0" text="No Guestbooks Yet"></unl-empty-content>
+  <unl-empty-content ng-hide="guestbooks.length > 0" text="No Guestbooks Yet">
+    <span subhead>Add your first guestbook by hitting <core-icon icon="add"></core-icon> above</span>
+  </unl-empty-content>
   <unl-list-group>
     <unl-list-item-label class="animate-fade-left" ng-repeat="guestbook in guestbooks | orderBy:'title'" heading="{{guestbook.title}}" link>
       <a ng-click="go('/{{groupId}}/guestbook/{{guestbook.$id}}')"><paper-ripple fit></paper-ripple></a>
