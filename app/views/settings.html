@@ -1,0 +1,26 @@
+<unl-toolbar>
+	<a ng-click="go('/{{groupId}}/guestbook/{{guestbookId}}', 'animate-slide-left')" title="Back to Guestbooks"><unl-icon-button icon="arrow-back"></unl-icon-button></a>
+	<span flex class="align-center">{{guestbook.title || 'Loading' }}</span>
+</unl-toolbar>
+<div class="content-container">
+	<unl-list-group>
+		<unl-list-item-header>General</unl-list-item-header>
+		<unl-list-item-label heading="Title">
+			<div class="tools">
+				<input self-validation name="guestbook-title" type="text" model="guestbook.title" field="guestbook-title">
+			</div>
+		</unl-list-item-label>
+		<unl-list-item-header>Data Tracking</unl-list-item-header>
+		<unl-list-item-label heading="Sign In">
+			<div class="tools">
+				<unl-toggle-button id="track-clock-out" checked="true" disabled="true"></unl-toggle-button>
+			</div>
+		</unl-list-item-label>
+		<unl-list-item-label heading="Sign Out">
+			<div class="tools">
+				<unl-toggle-button id="track-clock-out" sign-out="{{guestbook.track_sign_out}}" ></unl-toggle-button>
+				<span>{{guestbook.track_sign_out}}</span>
+			</div>
+		</unl-list-item-label>
+	</unl-list-group>
+</div>

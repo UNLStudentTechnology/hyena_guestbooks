@@ -16,7 +16,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'hyenaAngular'
+    'hyenaAngular',
+    'angularMoment'
     ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -24,9 +25,21 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/:groupId', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
+      .when('/:groupId/guestbook/new', {
+        templateUrl: 'views/new.html',
+        controller: 'NewCtrl'
+      })
+      .when('/:groupId/guestbook/:guestbookId/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
+      })
+      .when('/:groupId/guestbook/:guestbookId', {
+        templateUrl: 'views/guestbook.html',
+        controller: 'GuestbookCtrl'
       })
       .otherwise({
         redirectTo: '/'

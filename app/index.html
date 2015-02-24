@@ -2,7 +2,7 @@
 <html class="no-js" ng-app="hyenaGuestbooksApp">
   <head>
     <meta charset="utf-8">
-    <title>hyenaGuestbooksApp</title>
+    <title>Guestbooks</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
@@ -54,20 +54,26 @@
 
     <!-- Add your site or application content here -->
     <unl-layout>
-        <div drawer="" flex="" vertical="" layout="">
+        <div drawer flex vertical layout>
             <unl-list-group>
                 <unl-list-item-user user="{{currentUser | json}}"></unl-list-item-user>
                 <div ng-show="currentUser">
-                <!-- Authenticated user options -->
-                <unl-list-item-header>Options</unl-list-item-header>
-                <unl-list-item-label heading="Log out" link=""><a ng-href="#" ng-click="logOutCurrentUser()"></a></unl-list-item-label>
-                <!-- End authenticated user options -->
+                    <!-- List groups -->
+                    <unl-list-item-header><core-icon icon="social:group"></core-icon> My Groups</unl-list-item-header>
+                    <unl-list-item-label ng-attr-active="{{group.id==currentGroupId}}" ng-repeat="group in currentUser.groups | orderBy:'title'" heading="{{group.title}}" link>
+                        <a ng-click="go('/{{group.id}}', 'animate-slide-left'); closeMainDrawer()"><paper-ripple fit></paper-ripple></a>
+                    </unl-list-item-label>
+                    <!-- End list groups -->
+                    <!-- Authenticated user options -->
+                    <unl-list-item-header>Options</unl-list-item-header>
+                    <unl-list-item-label heading="Log out" link=""><a ng-href="#" ng-click="logOutCurrentUser()"></a></unl-list-item-label>
+                    <!-- End authenticated user options -->
                 </div>
             </unl-list-group>
             <footer>
             </footer>
         </div>
-        <div main="" vertical="" layout="" ng-view="" ng-class="pageAnimationClass">
+        <div main vertical layout ng-view ng-class="pageAnimationClass">
         </div>
     </unl-layout>
     <unl-toast></unl-toast>
@@ -115,7 +121,10 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/new.js"></script>
+        <script src="scripts/services/guestbook.js"></script>
+        <script src="scripts/controllers/guestbook.js"></script>
+        <script src="scripts/controllers/settings.js"></script>
         <!-- endbuild -->
 </body>
 </html>
