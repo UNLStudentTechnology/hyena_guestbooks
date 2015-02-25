@@ -9,14 +9,14 @@
  * Controller of the hyenaGuestbooksApp
  */
 angular.module('hyenaGuestbooksApp')
-  .controller('GuestbookCtrl', function ($scope, $rootScope, $routeParams, GuestbookService, Notification) {
+  .controller('GuestbookCtrl', function ($scope, $rootScope, $stateParams, GuestbookService, Notification) {
     $scope.kioskMode = false;
     $scope.moment = moment;
     //Get and set the current group ID
-  	var groupId = $routeParams.groupId;
+  	var groupId = $stateParams.groupId;
   	$scope.groupId = $rootScope.currentGroupId = groupId;
   	//Get guestbook id
-  	var guestbookId = $scope.guestbookId = $routeParams.guestbookId;
+  	var guestbookId = $scope.guestbookId = $stateParams.guestbookId;
 
   	//Get guestbook
   	var guestbook = GuestbookService.get(guestbookId).$asObject();

@@ -9,10 +9,10 @@
  * Controller of the hyenaGuestbooksApp
  */
 angular.module('hyenaGuestbooksApp')
-  .controller('NewCtrl', function ($scope, $rootScope, $routeParams, Notification, GuestbookService) {
+  .controller('NewCtrl', function ($scope, $rootScope, $stateParams, Notification, GuestbookService) {
   	$scope.kioskMode = false;
     //Get the selected group from the route parameters and set it in the scope
-    var groupId = $routeParams.groupId;
+    var groupId = $stateParams.groupId;
     $scope.groupId = $rootScope.currentGroupId = groupId;
 
     //Default guestbook settings

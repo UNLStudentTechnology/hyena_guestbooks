@@ -1,7 +1,7 @@
 <unl-toolbar>
 	<a ng-click="go('/{{groupId}}', 'animate-slide-left')" title="Back to Assets"><unl-icon-button icon="arrow-back"></unl-icon-button></a>
 	<span flex class="align-center">{{ guestbook.title || 'Loading' }}</span>
-	<a ng-click="showKioskMode()" title="Enter Kiosk Mode"><unl-icon-button icon="fullscreen"></unl-icon-button></a>
+	<a ng-click="go('/{{groupId}}/guestbook/{{guestbookId}}/kiosk')" title="Enter Kiosk Mode"><unl-icon-button icon="fullscreen"></unl-icon-button></a>
 	<a ng-click="go('/{{groupId}}/guestbook/{{guestbookId}}/settings')" title="Settings"><unl-icon-button icon="settings"></unl-icon-button></a>
 </unl-toolbar>
 <div class="content-container">
@@ -23,25 +23,3 @@
 		</unl-list-item-label>
 	</unl-list-group>
 </div>
-<!-- Kiosk Mode -->
-<unl-layout-kiosk ng-show="kioskMode">
-	<div header>
-		{{guestbook.title}}
-	</div>
-	<div tools>
-		<a ng-click="hideKioskMode()" title="Leave Kiosk Mode"><unl-icon-button icon="fullscreen-exit"></unl-icon-button></a>
-	</div>
-	<div content>
-		<div class="icon-header">
-			<h2 class="align-center">Sign In <span class="subhead">Enter your NUID below</span></h2>
-		</div>
-		<form name="signinForm" ng-submit="signInUser()" novalidate>
-			<div horizontal layout>
-				<label for="kiosk-nuid" hidden>Enter your NUID</label>
-				<input self-validation required model="signinNcard" type="text" field="kiosk-nuid" placeholder="Enter your NUID" flex start>
-				<button type="submit" ng-disabled="signinForm.$invalid" input end>Sign In</button>
-			</div>
-		</form>
-	</div>
-</unl-layout-kiosk>
-<!-- End Kiosk Mode -->

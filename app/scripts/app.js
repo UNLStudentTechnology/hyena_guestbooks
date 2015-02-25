@@ -13,37 +13,55 @@ angular
     'ngAnimate',
     'ngCookies',
     'ngResource',
-    'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ui.router',
     'hyenaAngular',
     'angularMoment'
     ])
-  .config(function ($routeProvider, $locationProvider) {
-    $routeProvider
-      .when('/', {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    $stateProvider
+      //Layouts
+      .state('unl-layout', {
+        templateUrl: 'views/layouts/unl-layout.html',
+        data: {
+          requireAuth: true
+        }
+      })
+      .state('unl-layout-kiosk', {
+        templateUrl: 'views/layouts/unl-layout-kiosk.html'
+      })
+      //Views
+      .state('unl-layout.guestbooks', {
+        url: '/:groupId',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/:groupId', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/:groupId/guestbook/new', {
+      .state('unl-layout.guestbook_new', {
+        url: '/:groupId/guestbook/new',
         templateUrl: 'views/new.html',
         controller: 'NewCtrl'
       })
-      .when('/:groupId/guestbook/:guestbookId/settings', {
+      .state('unl-layout.guestbook_settings', {
+        url: '/:groupId/guestbook/:guestbookId/settings',
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
       })
-      .when('/:groupId/guestbook/:guestbookId', {
+      .state('unl-layout.guestbook_view', {
+        url: '/:groupId/guestbook/:guestbookId',
         templateUrl: 'views/guestbook.html',
         controller: 'GuestbookCtrl'
       })
-      .otherwise({
-        redirectTo: '/'
+      .state('unl-layout-kiosk.guestbook_kiosk', {
+        url: '/:groupId/guestbook/:guestbookId/kiosk',
+        templateUrl: 'views/guestbook_kiosk.html',
+        controller: 'GuestbookCtrl'
       });
+      //Default Route
+      $urlRouterProvider.otherwise("/");
+      //End Default Route
+      
+      //Remove # from URLs
       $locationProvider.html5Mode(true);
   })
   .config(function ($httpProvider) {
