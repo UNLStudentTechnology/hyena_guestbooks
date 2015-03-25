@@ -29,9 +29,9 @@ angular.module('hyenaGuestbooksApp')
     $scope.createGuestbook = function() {
     	GuestbookService.add($scope.guestbook, groupId).then(function(response) {
     		console.log(response);
-    		var timeclockId = response.key();
+    		var guestbookId = response.key();
     		//Redirect and notify
-    		$scope.go('/'+groupId+'/guestbook/'+timeclockId);
+    		$scope.go('/'+groupId+'/guestbook/'+guestbookId);
     		Notification.show('Your guestbook has been created successfully!', 'success');
     	}, function(error) {
     		console.log('Create Guestbook Error', error);
