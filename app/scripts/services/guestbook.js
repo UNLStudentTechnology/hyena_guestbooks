@@ -78,7 +78,7 @@ angular.module('hyenaGuestbooksApp')
 
         return $firebase(guestbookRef.child('/guestbooks/'+guestbookId+'/topics')).$push(topic);
       },
-      exportData: function exportData(data) {
+      exportData: function exportData(data, guestbook) {
         console.log(data);
         data = angular.copy(data);
         var exportArray = [];
@@ -90,7 +90,8 @@ angular.module('hyenaGuestbooksApp')
               first_name: currItem.user.first_name,
               last_name: currItem.user.last_name,
               time_entered: moment(currItem.start_at).format('M/D/YYYY h:mm a'),
-              time_left: (currItem.end_at ? moment(currItem.end_at).format('M/D/YYYY h:mm a') : 'N/A')
+              time_left: (currItem.end_at ? moment(currItem.end_at).format('M/D/YYYY h:mm a') : 'N/A'),
+              topic: (angular.isDefined(guestbook.topics[currItem.topic_id]) ? guestbook.topics[currItem.topic_id].title : 'N/A')
             });
         }
 

@@ -10,7 +10,6 @@
  */
 angular.module('hyenaGuestbooksApp')
   .controller('GuestbookCtrl', function ($scope, $rootScope, $stateParams, GuestbookService, Notification) {
-    console.log($scope.currentUser);
     $scope.kioskMode = false;
     $scope.moment = moment;
     $scope.sortField = 'start_at';
@@ -29,7 +28,7 @@ angular.module('hyenaGuestbooksApp')
     //Get signins
     $scope.signins = GuestbookService.signins(guestbookId).$asArray();
     //Set export headers
-    $scope.exportHeaders = ['BB Username', 'First Namwe', 'Last Name', 'Date/Time Entered', 'Date/Time Left'];
+    $scope.exportHeaders = ['BB Username', 'First Namwe', 'Last Name', 'Date/Time Entered', 'Date/Time Left', 'Topic'];
 
     /**
      * Changes the sort direction for the checkin list
@@ -63,6 +62,6 @@ angular.module('hyenaGuestbooksApp')
     };
 
     $scope.exportData = function() {
-      return GuestbookService.exportData($scope.signins);
+      return GuestbookService.exportData($scope.signins, $scope.guestbook);
     };
   });

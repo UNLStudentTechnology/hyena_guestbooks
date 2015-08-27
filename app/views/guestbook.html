@@ -31,6 +31,7 @@
 							<option value="start_at">Sign In Time</option>
 							<option value="user.first_name">First Name</option>
 							<option value="user.last_name">Last Name</option>
+							<option value="topic_id">Topic</option>
 						</select>
 					</unl-tooltip>
 	        <unl-tooltip position="bottom" label="Export sign-ins"><unl-icon-button ng-csv="exportData()" filename="export_signins.csv" csv-header="exportHeaders" icon="archive"></unl-icon-button></unl-tooltip>
@@ -43,7 +44,7 @@
 				<unl-empty-content text="No Past Sign-ins" ng-hide="signins.length > 0">
 					<span subhead>Sign in users by hitting <core-icon icon="fullscreen"></core-icon> above</span>
 				</unl-empty-content>
-				<unl-list-item-details class="animate-fade-left" user user-model="signin.user" heading="{{ signin.user.first_name ? signin.user.first_name +' '+ signin.user.last_name : signin.user }}" image="{{signin.user.profile_image}}" details="{{signin.start_at | amCalendar}}" ng-repeat="signin in signins | orderBy:sortField:sortDirection | filter:signin_search">
+				<unl-list-item-details class="animate-fade-left" user user-model="signin.user" heading="{{ signin.user.first_name ? signin.user.first_name +' '+ signin.user.last_name : signin.user }}" image="{{signin.user.profile_image}}" details="{{signin.start_at | amCalendar}} | {{guestbook.topics[signin.topic_id].title}}" ng-repeat="signin in signins | orderBy:sortField:sortDirection | filter:signin_search">
 				</unl-list-item-details>
 			</unl-list-group>
 		</unl-card>

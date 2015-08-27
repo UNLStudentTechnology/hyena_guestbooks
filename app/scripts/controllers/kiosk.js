@@ -12,6 +12,7 @@ angular.module('hyenaGuestbooksApp')
   .controller('KioskCtrl', function ($scope, $rootScope, $stateParams, GuestbookService, Notification) {
     $scope.kioskMode = false;
     $scope.moment = moment;
+    $scope.topicId = "";
     //Get and set the current group ID
     var groupId = $stateParams.groupId;
     $scope.groupId = $rootScope.currentGroupId = groupId;
@@ -27,8 +28,9 @@ angular.module('hyenaGuestbooksApp')
     });
 
     $scope.signInUser = function() {
-      GuestbookService.signIn(guestbookId, $scope.signinNcard, $scope.serviceId).then(function(response) {
-        $scope.signinNcard = "";
+      console.log($scope.topicId);
+      GuestbookService.signIn(guestbookId, $scope.signinNcard, $scope.topicId).then(function(response) {
+        $scope.signinNcard = $scope.topicId = "";
         $scope.signinUserForm.$setUntouched();
         $scope.signinUserForm.$setPristine();
         Notification.show('You have been signed in successfully!', 'success');
@@ -36,5 +38,9 @@ angular.module('hyenaGuestbooksApp')
         console.error(error);
         Notification.show(error.data.message, 'error');
       });
+    };
+
+    $scope.change = function () {
+      console.log($scope.topicId);
     };
   });
