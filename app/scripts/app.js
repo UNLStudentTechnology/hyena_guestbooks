@@ -17,7 +17,8 @@ angular
     'ngTouch',
     'ui.router',
     'hyenaAngular',
-    'angularMoment'
+    'angularMoment',
+    'ngCsv'
     ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
@@ -55,7 +56,10 @@ angular
       .state('unl-layout-kiosk.guestbook_kiosk', {
         url: '/:groupId/guestbook/:guestbookId/kiosk',
         templateUrl: 'views/guestbook_kiosk.html',
-        controller: 'GuestbookCtrl'
+        controller: 'KioskCtrl',
+        data: {
+          requireAuth: false
+        }
       });
       //Default Route
       $urlRouterProvider.otherwise("/");
@@ -73,7 +77,7 @@ angular
       }
     ]);
   })
-  .constant('FBURL', 'https://hyena-guestbooks.firebaseio.com/')
+  .constant('FBURL', 'https://hive-guestbooks.firebaseio.com/')
   .constant('APIKEY', 'NDI3MDdjMjc2MjM4OTJhNWIwOWJjMzA1')
   .constant('APIPATH', 'http://st-studio.unl.edu/hyena_platform/public/api/1.0/')
   .constant('PLATFORM_ROOT', 'http://st-studio.unl.edu/hyena_platform/public/')

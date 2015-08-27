@@ -4,14 +4,15 @@
 Created by Hayden Gascoigne
 -->
 
-<polymer-element name="unl-header" attributes="">
+<polymer-element name="unl-header" attributes="" noscript>
   <template>
     <div id="unl-header-content" horizontal layout>
       <div id="unl-header-content-inner" horizontal layout>
-        <div flex>
-          <span>University of Nebraska-Lincoln</span>
+        <div id="unl-long-name" flex>
+          <span id="unl-long-name-default">University of Nebraska-Lincoln</span>
+          <span id="unl-long-name-alt">UNL</span>
         </div>
-        <div flex horizontal end-justified layout>
+        <div id="unl-header-text" flex horizontal end-justified layout>
           <span><content></content></span>
         </div>
       </div>
@@ -29,14 +30,4 @@ Created by Hayden Gascoigne
       }
     </style>
   </template>
-  <script>
-    (function () {
-      'use strict';
-
-      Polymer({
-        // define element prototype here
-      });
-
-    })();
-  </script>
 </polymer-element>

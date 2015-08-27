@@ -1,18 +1,20 @@
 <div header>
 	{{guestbook.title}}
 </div>
-<div tools>
+<!-- <div tools>
 	<a ng-click="go('/{{groupId}}/guestbook/{{guestbookId}}')" title="Leave Kiosk Mode"><unl-icon-button icon="fullscreen-exit"></unl-icon-button></a>
-</div>
+</div> -->
 <div content>
-	<div class="icon-header">
-		<h2 class="align-center">Sign In <span class="subhead">Enter your NUID below</span></h2>
-	</div>
-	<form name="signinForm" ng-submit="signInUser()" novalidate>
-		<div horizontal layout>
-			<label for="kiosk-nuid" hidden>Enter your NUID</label>
-			<input self-validation required model="signinNcard" type="text" field="kiosk-nuid" placeholder="Enter your NUID" flex start>
-			<button type="submit" ng-disabled="signinForm.$invalid" input end>Sign In</button>
+	<div class="content-container">
+		<div class="icon-header">
+			<h2 class="align-center">Sign In <span class="subhead">Enter your NUID below</span></h2>
 		</div>
-	</form>
+		<form name="signinUserForm" ng-submit="signInUser()" novalidate>
+			<div horizontal layout>
+				<label for="kiosk-nuid" hidden>Enter your NUID</label>
+				<input self-validation required model="signinNcard" type="password" pattern="[0-9]*" field="kioskNuid" placeholder="Enter your NUID" flex start>
+				<button type="submit" ng-disabled="signinUserForm.$invalid" input end>Sign In</button>
+			</div>
+		</form>
+	</div>
 </div>

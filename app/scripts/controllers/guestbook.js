@@ -10,20 +10,33 @@
  */
 angular.module('hyenaGuestbooksApp')
   .controller('GuestbookCtrl', function ($scope, $rootScope, $stateParams, GuestbookService, Notification) {
+    console.log($scope.currentUser);
     $scope.kioskMode = false;
     $scope.moment = moment;
-    //Get and set the current group ID
-  	var groupId = $stateParams.groupId;
-  	$scope.groupId = $rootScope.currentGroupId = groupId;
-  	//Get guestbook id
-  	var guestbookId = $scope.guestbookId = $stateParams.guestbookId;
+    $scope.sortField = 'start_at';
+    $scope.sortDirection = true;
 
-  	//Get guestbook
-  	var guestbook = GuestbookService.get(guestbookId).$asObject();
-  	guestbook.$bindTo($scope, 'guestbook');
+    //Get and set the current group ID
+    var groupId = $stateParams.groupId;
+    $scope.groupId = $rootScope.currentGroupId = groupId;
+    //Get guestbook id
+    var guestbookId = $scope.guestbookId = $stateParams.guestbookId;
+
+    //Get guestbook
+    var guestbook = GuestbookService.get(guestbookId).$asObject();
+    guestbook.$bindTo($scope, 'guestbook');
 
     //Get signins
     $scope.signins = GuestbookService.signins(guestbookId).$asArray();
+    //Set export headers
+    $scope.exportHeaders = ['BB Username', 'First Namwe', 'Last Name', 'Date/Time Entered', 'Date/Time Left'];
+
+    /**
+     * Changes the sort direction for the checkin list
+     */
+    $scope.toggleSort = function() {
+      $scope.sortDirection = !$scope.sortDirection;
+    };
 
     /**
      * Toggles kiosk mode, an interface for direct customer use.
@@ -41,11 +54,15 @@ angular.module('hyenaGuestbooksApp')
     $scope.signInUser = function() {
       GuestbookService.signIn(guestbookId, $scope.signinNcard).then(function(response) {
         $scope.signinNcard = "";
-        $scope.signinForm.$setUntouched();
-        Notification.show('You have been clocked in successfully!', 'success');
+        $scope.signinUserForm.$setUntouched();
+        Notification.show('You have been signed in successfully!', 'success');
       }, function(error) {
         console.error(error);
-        Notification.show(error.data, 'error');
+        Notification.show(error.data.message, 'error');
       });
+    };
+
+    $scope.exportData = function() {
+      return GuestbookService.exportData($scope.signins);
     };
   });

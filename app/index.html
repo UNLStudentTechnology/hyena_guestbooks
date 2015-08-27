@@ -52,6 +52,18 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <!-- Loading Page -->
+    <unl-layout-splash ng-hide="appLoaded">
+        <div heading>
+            <h2>
+                Loading CampusTalk
+                <span class="subhead">Guestbooks</span>
+            </h2>
+        </div>
+        <div left>v1.0</div>
+        <div center>campustalk.co</div>
+        <div right>HIVE</div>
+    </unl-layout-splash>
     <!-- Application Content -->
     <div ui-view></div>
     <!-- End Application Content -->
@@ -93,15 +105,19 @@
     <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
     <script src="bower_components/hyena-angular/dist/hyena-angular.min.js"></script>
+    <script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+
+        <script src="scripts/services/guestbook.js"></script>
+
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/new.js"></script>
-        <script src="scripts/services/guestbook.js"></script>
         <script src="scripts/controllers/guestbook.js"></script>
+        <script src="scripts/controllers/kiosk.js"></script>
         <script src="scripts/controllers/settings.js"></script>
         <!-- endbuild -->
 </body>
