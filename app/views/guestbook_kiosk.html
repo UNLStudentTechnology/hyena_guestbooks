@@ -15,10 +15,11 @@
 				<input required ng-model="signinNcard" type="password" pattern="[0-9]*" name="kioskNuid" placeholder="Enter your NUID">
 				<select name="topicSelect" ng-model="topicId" class="margin-bottom fill" required ng-change="change()">
 					<option value="">Choose a Topic</option>
-					<option value="{{id}}" ng-repeat="(id, topic) in guestbook.topics | orderObjectBy:'title'">{{topic.title}}</option>
+					<option value="{{topic.$key}}" ng-repeat="(id, topic) in guestbook.topics | orderObjectBy:'title'">{{topic.title}}</option>
 				</select>
 				<button type="submit" ng-disabled="signinUserForm.$invalid" class="button-block">Sign In</button>
 			</div>
+			{{guestbook.topics}}
 		</form>
 	</div>
 </div>
