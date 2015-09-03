@@ -89,8 +89,9 @@ angular.module('hyenaGuestbooksApp')
               username: currItem.user.uni_auth,
               first_name: currItem.user.first_name,
               last_name: currItem.user.last_name,
-              time_entered: moment(currItem.start_at).format('M/D/YYYY h:mm a'),
-              time_left: (currItem.end_at ? moment(currItem.end_at).format('M/D/YYYY h:mm a') : 'N/A'),
+              date_entered: moment(currItem.start_at).format('MMMM Do YYYY'),
+              time_entered: moment(currItem.start_at).format('h:mm a'),
+              // time_left: (currItem.end_at ? moment(currItem.end_at).format('M/D/YYYY h:mm a') : 'N/A'),
               topic: (angular.isDefined(guestbook.topics[currItem.topic_id]) ? guestbook.topics[currItem.topic_id].title : 'N/A')
             });
         }

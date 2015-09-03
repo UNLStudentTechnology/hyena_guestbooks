@@ -5,17 +5,6 @@
 	<a ng-click="go('/{{groupId}}/guestbook/{{guestbookId}}/settings')" title="Settings"><unl-icon-button icon="settings"></unl-icon-button></a>
 </unl-toolbar>
 
-<div class="content-container">
-	<!-- Sign in Form -->
-	<form name="signinUserForm" ng-submit="signInUser()">
-		<div horizontal layout>
-			<label for="nuid" hidden>Enter an NUID</label>
-			<input ng-model="signinNcard" type="password" pattern="[0-9]*" placeholder="Enter an NUID" flex start class="no-margin" required>
-			<button type="submit" ng-disabled="signinUserForm.$invalid">Sign In</button>
-		</div>
-	</form>
-	<!-- End Sign in Form -->
-</div>
 <unl-panel class="well" flex>
 	<div class="content-container">
 		<unl-card>

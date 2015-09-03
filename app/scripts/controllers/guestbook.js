@@ -28,7 +28,7 @@ angular.module('hyenaGuestbooksApp')
     //Get signins
     $scope.signins = GuestbookService.signins(guestbookId).$asArray();
     //Set export headers
-    $scope.exportHeaders = ['BB Username', 'First Namwe', 'Last Name', 'Date/Time Entered', 'Date/Time Left', 'Topic'];
+    $scope.exportHeaders = ['BB Username', 'First Namwe', 'Last Name', 'Date Entered', 'Time Entered', 'Topic'];
 
     /**
      * Changes the sort direction for the checkin list
